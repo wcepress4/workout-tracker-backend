@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import pumppro.springboot_backend.repository.UserRepository;
-import pumppro.springboot_backend.model.User;
 
 @SpringBootApplication
 public class SpringbootBackendApplication implements CommandLineRunner {
@@ -25,14 +24,5 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 //		user.setPassword("pineapple");
 //		user.setVerified(false);
 //		userRepository.save(user);
-//
-//		User user1 = new User();
-//		user1.setUsername("joeschmo");
-//		user1.setEmail("joeschmo@gmail.com");
-//		user1.setFirstName("Joe");
-//		user1.setLastName("Schmo");
-//		user1.setPassword("monkey");
-//		user1.setVerified(true);
-//		userRepository.save(user1);
 	} //run
 }

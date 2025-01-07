@@ -17,8 +17,8 @@ import jakarta.persistence.*;
 @Entity
 @Builder
 @Data
-@Table(name = "user")
-public class User {
+@Table(name = "exercise")
+public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,25 +26,23 @@ public class User {
 
     @Column(nullable = false)
     @Size(max = 100)
-    private String login;
+    private String name;
+
+    @Column
+    private String image; // URL or path to the image
 
     @Column(nullable = false)
     @Size(max = 100)
-    private String password;
+    private String bodyPart;
 
     @Column(nullable = false)
     @Size(max = 100)
-    private String email;
+    private String category;
 
-    @Column(name = "first_name")
-    @Size(max = 100)
-    private String firstName;
+    @Column(columnDefinition = "TEXT")
+    private String instructions;
 
-    @Column(name = "last_name")
-    @Size(max = 100)
-    private String lastName;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
-} //User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
+}
