@@ -20,6 +20,7 @@ import jakarta.persistence.*;
 @Table(name = "exercise")
 public class Exercise {
 
+    // I want to see if this comment will be here...
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
