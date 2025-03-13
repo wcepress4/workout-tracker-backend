@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface WorkoutTemplateSetRepository extends JpaRepository<WorkoutTemplateSet, Long> {
-    List<WorkoutTemplateSet> findByWorkoutTemplateSetIdOrderBySequenceAsc(Long workoutTemplateSetId);
+    List<WorkoutTemplateSet> findByWorkoutTemplateExerciseId(Long workoutTemplateExerciseId);
 }

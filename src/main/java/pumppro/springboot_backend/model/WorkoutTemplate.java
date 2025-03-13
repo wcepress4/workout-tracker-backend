@@ -25,7 +25,6 @@ public class WorkoutTemplate {
     @Column(columnDefinition = "TEXT") // Ensures large text can be stored
     private String description;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by", nullable = true) // Nullable for default templates
     private User createdBy;

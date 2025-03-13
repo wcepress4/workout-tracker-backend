@@ -23,7 +23,7 @@ public class WorkoutTemplateService {
     private final WorkoutTemplateMapper workoutTemplateMapper;
 
     public List<WorkoutTemplateDto> getAllWorkoutTemplates(Long userId) {
-        List<WorkoutTemplate> templates = workoutTemplateRepository.findByUserId(userId);
+        List<WorkoutTemplate> templates = workoutTemplateRepository.findByCreatedById(userId);
         return templates.stream()
                 .map(workoutTemplateMapper::toWorkoutTemplateDto)
                 .collect(Collectors.toList());

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class WorkoutTemplateSetService {
+
     private final WorkoutTemplateExerciseRepository workoutTemplateExerciseRepository;
     private final UserRepository userRepository;
     private final ExerciseRepository exerciseRepository;
@@ -55,8 +56,20 @@ public class WorkoutTemplateSetService {
                 .orElseThrow(() -> new AppException("User not found", HttpStatus.NOT_FOUND));
 
         workoutTemplateSet.setWorkoutTemplateExercise(workoutTemplateExerciseRepository.findById(workoutTemplateSetDto.getWorkoutTemplateExerciseId())
-                .orElseThrow(() -> new AppException("Workout template set not found", HttpStatus.NOT_FOUND)));
+                .orElseThrow(() -> new AppException("Workout template exercise not found", HttpStatus.NOT_FOUND)));
 
-        workoutTemplateSet.setSet(workout);
+        workoutTemplateSet.setSet(setRepository.findById(workoutTemplateSetDto.getSetId())
+                .orElseThrow(() -> new AppException("Set not found", HttpStatus.NOT_FOUND)));
+
+        workoutTemplateSet.setCreatedBy(user);
+
+        WorkoutTemplateSet updatedWorkoutTemplateSet = workoutTemplateSetRepository.save(workoutTemplateSet);
+        return workoutTemplateSetMapper.toWorkoutTemplateSetDto(updatedWorkoutTemplateSet);
+    }
+
+    public void deleteWorkoutTemplateSetById(long id) {
+        WorkoutTemplateSet workoutTemplateSet = workoutTemplateSetRepository.findById(id)
+                .orElseThrow(() -> new AppException("Workout template set not found", HttpStatus.NOT_FOUND));
+        workoutTemplateSetRepository.delete(workoutTemplateSet);
     }
 }
